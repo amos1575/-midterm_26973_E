@@ -344,14 +344,84 @@ public Page<Transaction> getAllTransactionsPaginated(
 | POST | `/api/users/{userId}/favorites/{categoryId}` | Add favorite category |
 | DELETE | `/api/users/{userId}/favorites/{categoryId}` | Remove favorite category |
 
+**Register new user**
+
+<img width="1543" height="909" alt="image" src="https://github.com/user-attachments/assets/862508f0-be7f-4cc6-a34a-ab72562d67ae" />
+
+
+**Get user by ID**
+
+<img width="1540" height="947" alt="image" src="https://github.com/user-attachments/assets/39e33182-5525-4ae3-8da6-245aa728b7a6" />
+
+
+**Update user**
+
+<img width="1534" height="929" alt="image" src="https://github.com/user-attachments/assets/71174253-fcb0-4a2f-8e32-b367796a73dc" />
+
+
+**Delete user**
+
+<img width="1539" height="920" alt="image" src="https://github.com/user-attachments/assets/61c438b1-3da0-4b09-bc25-cb956c2afcdc" />
+
+
+**Check email exists**
+
+<img width="1542" height="930" alt="image" src="https://github.com/user-attachments/assets/f226669d-236d-49be-a1a5-417af128c285" />
+
+
+**Check username exists**
+
+<img width="1540" height="945" alt="image" src="https://github.com/user-attachments/assets/c7ee7a51-6d54-4442-8642-55af9f13451a" />
+
+
+**Get users by location code**
+
+<img width="1540" height="953" alt="image" src="https://github.com/user-attachments/assets/0449e1dd-bdad-405f-9a39-43e5710a5050" />
+
+
+**Get users by location name**
+
+<img width="1537" height="951" alt="image" src="https://github.com/user-attachments/assets/e9f4e5d7-1baa-44f1-b546-e91b80b5d9d1" />
+
+
+**Add favorite category**
+
+<img width="1538" height="941" alt="image" src="https://github.com/user-attachments/assets/5229a0f8-1865-41ed-b71c-124aafdad5ec" />
+
+
+**Remove favorite category**
+
+<img width="1538" height="941" alt="image" src="https://github.com/user-attachments/assets/3289cfd5-c376-46dc-b483-8ed20d58cadc" />
+
+
+
 ### UserProfile Endpoints
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/user-profiles` | Create user profile |
 | GET | `/api/user-profiles/user/{userId}` | Get user's profile |
 | GET | `/api/user-profiles/exists/user/{userId}` | Check profile exists |
-| PUT | `/api/user-profiles/{id}` | Update profile by ID |
 | PUT | `/api/user-profiles/user/{userId}` | Update profile by user ID |
+
+**Create user profile**
+
+<img width="1528" height="769" alt="image" src="https://github.com/user-attachments/assets/b8139e20-dcbc-4eaa-946b-e11410962b14" />
+
+
+**Get user's profile**
+
+<img width="1524" height="924" alt="image" src="https://github.com/user-attachments/assets/fec07fe3-58db-499a-9999-a9417f253aee" />
+
+
+**Check profile exists**
+
+<img width="1533" height="462" alt="image" src="https://github.com/user-attachments/assets/adc37d1d-54a1-4b66-9e77-e23bbc8d7c8b" />
+
+
+**Update profile by user ID**
+
+<img width="1531" height="923" alt="image" src="https://github.com/user-attachments/assets/827dd0c1-655a-426f-b8ac-cfc265c4f095" />
+
 
 ### Account Endpoints
 | Method | Endpoint | Description |
@@ -360,6 +430,26 @@ public Page<Transaction> getAllTransactionsPaginated(
 | GET | `/api/accounts` | Get all accounts |
 | GET | `/api/accounts/user/{userId}` | Get user's accounts |
 | GET | `/api/accounts/user/{userId}/total-balance` | Get user's total balance |
+
+**Create account**
+
+<img width="1536" height="779" alt="image" src="https://github.com/user-attachments/assets/62923c1c-8a9d-4b32-93ff-80bc65199e57" />
+
+
+**Get all accounts**
+
+<img width="1530" height="922" alt="image" src="https://github.com/user-attachments/assets/a5d07e20-4a6d-4741-a5ea-8d10c76cc883" />
+
+
+**Get user's accounts**
+
+<img width="1508" height="913" alt="image" src="https://github.com/user-attachments/assets/c4f1c7a7-7b42-4077-ba7d-5aece9045521" />
+
+
+**Get user's total balance**
+
+<img width="1534" height="920" alt="image" src="https://github.com/user-attachments/assets/762ca23a-f3d0-4547-8e83-b2b98fe3216f" />
+
 
 ### Transaction Endpoints
 | Method | Endpoint | Description |
@@ -370,12 +460,77 @@ public Page<Transaction> getAllTransactionsPaginated(
 | GET | `/api/transactions/account/{accountId}/paginated` | Get account transactions (paginated) |
 | GET | `/api/transactions/user/{userId}/paginated` | Get user transactions (paginated) |
 
+**Create transaction**
+
+<img width="1535" height="913" alt="image" src="https://github.com/user-attachments/assets/624754f1-b1ca-4576-9ed9-6af5170fe2af" />
+
+
+**Get account transactions**
+
+<img width="1528" height="926" alt="image" src="https://github.com/user-attachments/assets/b72cac04-7d75-4b51-b6dd-6d337b287e03" />
+
+
+**Get all transactions (paginated)**
+
+<img width="1532" height="920" alt="image" src="https://github.com/user-attachments/assets/f8a369fb-6220-4dcf-85a7-2bac4add9cfa" />
+
+
+**Get account transactions (paginated)**
+
+<img width="1532" height="927" alt="image" src="https://github.com/user-attachments/assets/a76a76b9-fda3-4ee6-80c3-2c01f49538bb" />
+
+
+**Get user transactions (paginated)**
+
+<img width="1530" height="937" alt="image" src="https://github.com/user-attachments/assets/5ac64a35-7e5f-48c5-a5f4-d7953bd57c97" />
+
+
 ### Location Endpoints
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/locations` | Create location |
-| GET | `/api/locations` | Get all locations |
+| POST | `/api/locations` | Create location(Province) |
+| POST | `/api/locations` | Create location(District) |
+| POST | `/api/locations` | Create location(Sector) |
+| POST | `/api/locations` | Create location(Cell) |
+| POST | `/api/locations` | Create location(Village) |
 | PUT | `/api/locations/{id}` | Update location |
+| GET | `/api/locations` | Get all locations |
+
+
+**Create location(Province)**
+
+<img width="1540" height="921" alt="image" src="https://github.com/user-attachments/assets/0ce9db01-0439-4a73-8ca9-487755c5818c" />
+
+
+**Create location(District)**
+
+<img width="1540" height="918" alt="image" src="https://github.com/user-attachments/assets/e20bac68-4d10-488f-bbf6-b27087b4fe2f" />
+
+
+**Create location(Sector)**
+
+<img width="1502" height="905" alt="image" src="https://github.com/user-attachments/assets/e8431b3e-7e4c-4bfa-b040-6613679a1925" />
+
+
+**Create location(Cell)**
+
+<img width="1491" height="895" alt="image" src="https://github.com/user-attachments/assets/266860b5-ac26-46fe-b918-9d7cb4a86c4f" />
+
+
+**Create location(Village)**
+
+<img width="1539" height="902" alt="image" src="https://github.com/user-attachments/assets/6f74cb3b-48da-451d-ba06-a233be27017b" />
+
+
+**UPdate Location**
+
+<img width="1509" height="873" alt="image" src="https://github.com/user-attachments/assets/a52366f5-799e-4ee2-8e04-488ff3ab48e4" />
+
+
+**Get all locations**
+
+<img width="1509" height="873" alt="image" src="https://github.com/user-attachments/assets/024695ab-d653-4507-b40d-bbfc531f4a15" />
+
 
 ### Category Endpoints
 | Method | Endpoint | Description |
@@ -383,10 +538,24 @@ public Page<Transaction> getAllTransactionsPaginated(
 | POST | `/api/categories` | Create category |
 | GET | `/api/categories` | Get all categories |
 
+**Create category**
+
+<img width="1543" height="763" alt="image" src="https://github.com/user-attachments/assets/8d466d6d-71c1-4c4e-971d-a2a8435f2b4a" />
+
+**Get all categories**
+
+<img width="1482" height="903" alt="image" src="https://github.com/user-attachments/assets/7a8b3505-ff71-4559-abb2-c3cf6a20c5a9" />
+
+
 ### Budget Endpoints
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/budgets` | Create budget |
+
+**Create budget**
+
+<img width="1497" height="785" alt="image" src="https://github.com/user-attachments/assets/b8b432cf-aded-4a0b-9ed4-15a372da7c93" />
+
 
 ---
 
