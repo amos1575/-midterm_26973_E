@@ -68,6 +68,7 @@ Category (1) ←→ (*) Transaction      [Many-to-One]
 Location (1) ←→ (*) User             [Many-to-One]
 Location (1) ←→ (1) Location         [Self-referencing for hierarchy]
 ```
+<img width="1536" height="1024" alt="MY ERD" src="https://github.com/user-attachments/assets/3143714e-d6fe-4f02-a36e-42aa38bfb425" />
 
 ---
 
