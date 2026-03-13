@@ -78,11 +78,10 @@ Location (1) ←→ (1) Location         [Self-referencing for hierarchy]
 **Challenge**: Started with H2 in-memory database, needed to migrate to PostgreSQL for production-ready persistence.
 
 **Actions Taken**:
-1. Installed PostgreSQL 18.1
-2. Created database: `personal_finance_db`
-3. Configured `application.properties` with PostgreSQL connection
-4. Resolved password authentication issues by modifying `pg_hba.conf`
-5. Set `spring.jpa.hibernate.ddl-auto=update` to preserve data
+
+1. Created database: `personal_finance_db`
+2. Configured `application.properties` with PostgreSQL connection
+3. Set `spring.jpa.hibernate.ddl-auto=update` to preserve data
 
 **Configuration**:
 ```properties
@@ -110,10 +109,9 @@ server.port=8082
 - `username` (unique, not null)
 - `password` (not null)
 - `email`, `name`, `phoneNumber`
-- `location` (ManyToOne relationship)
-- `accounts` (OneToMany relationship)
-- `userProfile` (OneToOne relationship)
-- `favoriteCategories` (ManyToMany relationship)
+
+<img width="1246" height="396" alt="image" src="https://github.com/user-attachments/assets/af7e8024-1383-470b-8657-a89c3ed36669" />
+
 
 #### 2.2 Location Entity
 **Design**: Hierarchical self-referencing structure for Rwanda's administrative divisions
@@ -130,6 +128,10 @@ Kigali (Province, parent=null)
       └─ Kimironko (Sector, parent=Gasabo)
 ```
 
+<img width="1067" height="858" alt="image" src="https://github.com/user-attachments/assets/8c458e52-2da7-49d9-8d53-5e0c1fb37cab" />
+
+
+
 #### 2.3 Account Entity
 **Purpose**: Store user's financial accounts (banks, mobile money)
 
@@ -138,6 +140,9 @@ Kigali (Province, parent=null)
 - `name` (e.g., "Bank of Kigali", "MTN Mobile Money")
 - `balance` (automatically updated when transactions are created)
 - `user` (ManyToOne relationship)
+
+<img width="508" height="566" alt="image" src="https://github.com/user-attachments/assets/12844a94-2725-4f76-8e9b-d0ee39408c5e" />
+
 
 #### 2.4 Transaction Entity
 **Purpose**: Record financial transactions
@@ -151,13 +156,25 @@ Kigali (Province, parent=null)
 
 **Critical Feature**: Automatic balance deduction implemented in `TransactionService`
 
+<img width="1066" height="862" alt="image" src="https://github.com/user-attachments/assets/af1c4090-4d13-43db-8238-6c015dd18d5d" />
+
+
+
 #### 2.5 Category Entity
 **Purpose**: Categorize transactions (Food, Transport, Housing, etc.)
 
 **Enhancement**: Added Many-to-Many relationship with User for favorite categories
 
+<img width="666" height="460" alt="image" src="https://github.com/user-attachments/assets/4053f242-3847-4cf9-ae53-3a37a0bb5c35" />
+
+
+
 #### 2.6 Budget Entity
 **Purpose**: Store user budget allocations per category
+
+<img width="392" height="473" alt="image" src="https://github.com/user-attachments/assets/dbf88d10-1e67-4fcc-ae3e-33abdcb1c1a4" />
+
+
 
 #### 2.7 UserProfile Entity (NEW)
 **Purpose**: Extended user information (One-to-One relationship)
@@ -168,6 +185,16 @@ Kigali (Province, parent=null)
 - `bio`, `dateOfBirth`, `occupation`, `profilePictureUrl`
 
 ---
+
+<img width="1239" height="391" alt="image" src="https://github.com/user-attachments/assets/63405c90-a744-4424-9101-68c794862682" />
+
+#### 2.8 UserFavoriteCategory Entity
+**Purpose**: Store user favorite categories
+
+<img width="453" height="705" alt="image" src="https://github.com/user-attachments/assets/0cb0bdfe-f4fb-4ce4-bd22-9111cd5cf108" />
+
+
+
 
 ### Phase 3: Repository Layer
 
@@ -244,16 +271,6 @@ public Page<Transaction> getAllTransactionsPaginated(
 
 ### Phase 6: Data Population
 
-Created comprehensive sample data files:
-
-1. **Category_Data.md**: 20 transaction categories
-2. **Location_data.txt**: Rwanda's hierarchical location structure
-3. **Account_Data.md**: 20 Rwandan banks and mobile money providers
-4. **Budget_Data.md**: 20 budget allocations
-5. **Transaction_Data.md**: 100+ realistic transactions
-6. **User Profiles**: 8 user profiles with diverse occupations
-7. **Favorite Categories**: User-category associations
-
 **Data Characteristics**:
 - Realistic Rwandan context (Bank of Kigali, Equity Bank, MTN, Airtel)
 - RWF currency amounts
@@ -262,70 +279,49 @@ Created comprehensive sample data files:
 
 ---
 
-### Phase 7: Debugging & Issue Resolution
 
-#### Issue 1: User Balance Mismatch
-**Problem**: User 4 showed User 2's balance data
-**Root Cause**: Accounts created with incorrect `user_id` in database
-**Solution**: Verified account ownership via debug endpoint, corrected user_id values
-
-#### Issue 2: JSON Field Case Sensitivity
-**Problem**: Location field returning null during user registration
-**Root Cause**: JSON used "Location" (capital L) instead of "location"
-**Solution**: Ensured JSON field names match Java entity field names exactly
-
-#### Issue 3: Transaction Repository Error
-**Problem**: `No property 'userId' found for type 'Transaction'`
-**Root Cause**: Transaction doesn't have direct userId field
-**Solution**: Used custom JPQL query to navigate relationship: `t.account.user.id`
-
-#### Issue 4: Port 8082 Already in Use
-**Problem**: Application failed to start due to port conflict
-**Solution**: Used `taskkill /F /PID <process_id>` to free the port
-
----
 
 ## ✨ Features Implemented
 
-### 1. Entity Relationship Diagram (3 Marks) ✅
+### 1. Entity Relationship Diagram  
 - 8 tables with clear relationships
 - Proper foreign key constraints
 - Self-referencing hierarchy for locations
 
-### 2. Location Saving (2 Marks) ✅
+### 2. Location Saving 
 - Hierarchical structure (Province → District → Sector)
 - Self-referencing ManyToOne relationship
 - UUID primary key with auto-generation
 
-### 3. Pagination & Sorting (5 Marks) ✅
+### 3. Pagination & Sorting 
 - Implemented on Transaction endpoints
 - Configurable page size, page number, sort field, sort direction
 - Returns `Page<T>` with metadata (totalElements, totalPages, etc.)
 - Performance optimization for large datasets
 
-### 4. Many-to-Many Relationship (3 Marks) ✅
+### 4. Many-to-Many Relationship 
 - User ↔ Category (favorite categories)
 - Join table: `user_favorite_categories`
 - Endpoints to add/remove favorites
 
-### 5. One-to-Many Relationship (2 Marks) ✅
+### 5. One-to-Many Relationship
 - User → Accounts
 - User → Transactions
 - Account → Transactions
 - Location → Users
 
-### 6. One-to-One Relationship (2 Marks) ✅
+### 6. One-to-One Relationship 
 - User ↔ UserProfile
 - Unique constraint on foreign key
 - Extended user information storage
 
-### 7. existBy() Methods (2 Marks) ✅
+### 7. existBy() Methods 
 - `existsByEmail()` - Check email availability
 - `existsByUsername()` - Check username availability
 - `existsByUserId()` - Check if profile exists
 - Efficient COUNT queries instead of full entity retrieval
 
-### 8. Location-based User Retrieval (4 Marks) ✅
+### 8. Location-based User Retrieval 
 - `findByLocationCode()` - Get users by location code
 - `findByLocationName()` - Get users by location name
 - Custom JPQL queries with relationship navigation
@@ -420,8 +416,8 @@ Created comprehensive sample data files:
    Update `src/main/resources/application.properties`:
    ```properties
    spring.datasource.url=jdbc:postgresql://localhost:5432/personal_finance_db
-   spring.datasource.username=your_username
-   spring.datasource.password=your_password
+   spring.datasource.username=postgres
+   spring.datasource.password=amos123
    ```
 
 4. **Build the Project**
@@ -453,12 +449,6 @@ lsof -i :8082
 kill -9 <process_id>
 ```
 
-**PostgreSQL Authentication Error:**
-- Check `pg_hba.conf` file
-- Ensure password is correct
-- Restart PostgreSQL service
-
----
 
 ## 📊 Sample Data
 
@@ -561,12 +551,6 @@ GET /api/transactions/paginated?page=0&size=10&sortBy=date&sortDirection=DESC
    - Path variables and request parameters
    - JSON serialization/deserialization
 
-7. **Problem Solving**
-   - Debugging circular reference issues
-   - Resolving foreign key constraints
-   - Handling case-sensitive JSON fields
-   - Query optimization for relationships
-
 ### Best Practices Implemented:
 
 - ✅ Separation of concerns (Controller → Service → Repository)
@@ -592,22 +576,7 @@ GET /api/transactions/paginated?page=0&size=10&sortBy=date&sortDirection=DESC
 
 ---
 
-## 🏆 Assessment Criteria Met
 
-| Criteria | Marks | Status |
-|----------|-------|--------|
-| ERD with 5+ tables | 3 | ✅ (8 tables) |
-| Location saving implementation | 2 | ✅ |
-| Sorting & Pagination | 5 | ✅ |
-| Many-to-Many relationship | 3 | ✅ |
-| One-to-Many relationship | 2 | ✅ |
-| One-to-One relationship | 2 | ✅ |
-| existBy() methods | 2 | ✅ |
-| Location-based user retrieval | 4 | ✅ |
-| Viva-Voce preparation | 7 | ✅ |
-| **TOTAL** | **30** | **✅** |
-
----
 
 ## 📚 Additional Documentation
 
@@ -618,10 +587,10 @@ For detailed technical explanations of each implementation, refer to:
 
 ## 👨‍💻 Author
 
-**Project Developer**: [Your Name]  
-**Course**: Web Technologies  
-**Institution**: [Your Institution]  
-**Year**: 2024
+**Project Developer**: AMOS NKURUNZIZA 
+**Course**: Web Technology and Internet
+**Institution**: AUCA
+**Year**: 2026
 
 ---
 
@@ -640,6 +609,6 @@ This project is developed for academic purposes as part of a Spring Boot practic
 
 ---
 
-**Last Updated**: March 2024  
+**Last Updated**: March 2026  
 **Version**: 1.0.0  
 **Status**: ✅ Complete and Production Ready
