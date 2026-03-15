@@ -747,14 +747,6 @@ GET /api/transactions/paginated?page=0&size=10&sortBy=date&sortDirection=DESC
 ---
 
 
-
-## 📚 Additional Documentation
-
-For detailed technical explanations of each implementation, refer to:
-- **PRACTICAL_ASSESSMENT_DOCUMENTATION.md** - Comprehensive guide for viva-voce preparation
-
----
-
 ## 👨‍💻 Author
 
 **Project Developer**: AMOS NKURUNZIZA 
